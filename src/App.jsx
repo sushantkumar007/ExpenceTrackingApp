@@ -1,14 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import conf from './conf/conf'
+import React from 'react'
+// import './App.css'
+import { Outlet } from 'react-router-dom'
+import { Header, Footer } from "./components/index"
 
 function App() {
 
   return (
    <>
-   <h1>Hello World</h1>
+   <Header />
+   <main>
+    <Outlet />
+   </main>
+   <Footer />
    </>
   )
 }
