@@ -9,11 +9,11 @@ function Input({
 
     return (
         <div>
-            {label && <label className=''>
-        {label}</label>}
+            {label && <label className='w-full'>
+        {label}</label>}<br />
         <input 
         type={type}
-        className={`text-black ${className}`}
+        className={`w-full text-black border border-black rounded ${className}`}
         {...props}
         ref={ref}
         />

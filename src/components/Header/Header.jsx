@@ -13,16 +13,6 @@ function Header() {
             active: true
         },
         {
-            name: "Statement",
-            path: "/statement",
-            active: authStatus
-        },
-        {
-            name: "Add Transection",
-            path: "/addTransection",
-            active: authStatus
-        },
-        {
             name: "Login",
             path: "/login",
             active: !authStatus
@@ -38,9 +28,9 @@ function Header() {
     return (
         <div className='w-full bg-gray-400'>
             <nav>
-                <ul className='list-none flex justify-center'>
+                <ul className='list-none flex justify-between'>
                     {navItems.map((item) => item.active ? (
-                        <li key={item.name} className='mt-2 mx-1'>
+                        <li key={item.name} className='my-2 mx-4'>
                             <Link to={item.path}>{item.name}</Link>
                         </li>
                     ) : null)}

@@ -8,6 +8,7 @@ import Login from "./form/Login";
 import Signup from "./form/Signup"
 import TransectionForm from "./form/TransectionForm"
 import Statement from "./Statement"
+import Container from "./container/Container";
 
 export {
     Input,
@@ -19,5 +20,6 @@ export {
     Login,
     Signup,
     TransectionForm,
-    Statement
+    Statement,
+    Container
 }

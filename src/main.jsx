@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import {AddTransection, Home, Login, Signup, Statement} from './pages/index.js'
+import { Home, Login, Signup } from './pages/index.js'
 import { Provider } from 'react-redux'
 import store from "./store/store.js"
 
@@ -15,14 +15,6 @@ const router = createBrowserRouter([
       {
         element: <Home />,
         path: ""
-      },
-      {
-        element: <Statement />,
-        path: "/statement"
-      },
-      {
-        element: <AddTransection />,
-        path: "/addTransection"
       },
       {
         element: <Login />,

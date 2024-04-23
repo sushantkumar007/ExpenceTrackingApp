@@ -1,10 +1,11 @@
 import React, { forwardRef } from 'react'
 
 function Select({
-    options = []
+    options = [],
+    className = ""
 }, ref) {
     return (
-        <select ref={ref}>
+        <select className={`${className}`} ref={ref}>
         {options.map((option) => (
             <option key={option} value={option}>
                 {option}

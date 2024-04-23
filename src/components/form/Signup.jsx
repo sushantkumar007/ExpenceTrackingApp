@@ -23,40 +23,40 @@ function Signup() {
         }
     }
 
-    console.log("Signupt is Called")
-
     return (
-        <div className='text-blue'>
-            <div className='text-blue-500'>Signup to create account</div>
-            <form onSubmit={handleSubmit(create)}>
-                <div>
-                <Input 
-                label="Name: "
-                type="text"
-                placeholder="Enter your name"
-                {...register("name", { 
-                    required: true
-                })}
-                />
-                <Input 
-                label="Email: "
-                type="email"
-                placeholder="Enter your email"
-                {...register("email", {
-                    required: true
-                })}
-                />
-                <Input 
-                label="Password: "
-                type="password"
-                placeholder="Enter your password"
-                {...register("password", {
-                    required: true
-                })}
-                />
-                <Button type="submit">
-                    Create Account
-                </Button>
+        <div className='w-full my-8'>
+            <form onSubmit={handleSubmit(create)} className='w-4/5 mx-auto bg-gray-200 border border-black rounded'>
+                <div className='p-6'>
+                    <Input 
+                    label="Name: "
+                    type="text"
+                    className="my-2 px-2"
+                    placeholder="Enter your name"
+                    {...register("name", { 
+                        required: true
+                    })}
+                    />
+                    <Input 
+                    label="Email: "
+                    type="email"
+                    className="my-2 px-2"
+                    placeholder="Enter your email"
+                    {...register("email", {
+                        required: true
+                    })}
+                    />
+                    <Input 
+                    label="Password: "
+                    type="password"
+                    className="my-2 px-2"
+                    placeholder="Enter your password"
+                    {...register("password", {
+                        required: true
+                    })}
+                    />
+                    <Button type="submit" bgColor='bg-blue-500' className='w-full py-2 px-4 mt-2 rounded-md'>
+                        Create Account
+                    </Button>
                 </div>
             </form>
         </div>
