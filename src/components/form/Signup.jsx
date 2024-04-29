@@ -24,8 +24,8 @@ function Signup() {
     }
 
     return (
-        <div className='w-full my-8'>
-            <form onSubmit={handleSubmit(create)} className='w-4/5 mx-auto bg-gray-200 border border-black rounded'>
+        <div className='w-full my-8 sm:mt-36'>
+            <form onSubmit={handleSubmit(create)} className='w-4/5 mx-auto bg-gray-200 border border-black rounded sm:max-w-[350px]'>
                 <div className='p-6'>
                     <Input 
                     label="Name: "

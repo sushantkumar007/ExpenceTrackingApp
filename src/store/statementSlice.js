@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    transections: []
+    transections: [],
+    isTransectionEditable: false,
+    editableTransecton: null
 }
 
 const statementSlice = createSlice({
@@ -14,12 +16,13 @@ const statementSlice = createSlice({
         removeStatement: (state) => {
             state.transections = []
         },
-        addTransection: (state, action) => {
-            state.transections.push(action.payload)
+        editTransection: (state, action) => {
+            state.isTransectionEditable = true
+            state.editableTransecton = action.payload
         }
     }
 })
 
-export const { addStatement, removeStatement, addTransection } = statementSlice.actions
+export const { addStatement, removeStatement, editTransection } = statementSlice.actions
 
 export default statementSlice.reducer

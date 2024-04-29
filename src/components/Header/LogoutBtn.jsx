@@ -18,7 +18,7 @@ function LogoutBtn() {
         })
     }
     return (
-        <button onClick={logoutHandle} className="mt-2 mx-1">
+        <button onClick={logoutHandle} className="mt-2 mx-4">
             Logout
         </button>
     )

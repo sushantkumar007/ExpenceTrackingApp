@@ -2,25 +2,41 @@ import React, { useState } from 'react'
 import { databaseService } from '../../appwrite/index'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { Input, Button, Select } from "../index"
+import { Input, Button } from "../index"
 import { useSelector, useDispatch } from 'react-redux'
-import { addTransection as addStatement } from "../../store/statementSlice"
+import { addStatement } from "../../store/statementSlice"
 
 function TransectonForm() {
-    const [error, setError] = useState("")
     const {register, handleSubmit, reset} = useForm()
+    const [error, setError] = useState("")
+    const [transectionType, setTransectionType] = useState("")
     const userData = useSelector((state) => state.auth.userData)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     
+    const credit = () => {
+        setTransectionType("Cr")
+    }
+
+    const debit = () => {
+        setTransectionType("Dr")
+    }
+
     const addTransection = async (data) => {
+        if (transectionType === "Cr") {
+            data.status = "Cr"
+        }
+        else if (transectionType === "Dr") {
+            data.status = "Dr"
+        }
         data.userId = userData.$id
 
         databaseService.createTransection(data)
         .then((transection) => {
             if (transection) {
-                dispatch(addStatement(transection))
-                console.log(transection)
+                databaseService.getStatement(userData.$id).then((transections) => {
+                    dispatch(addStatement({transections}))
+                })
                 console.log("post is created")
                 reset({
                     date: "",
@@ -36,16 +52,16 @@ function TransectonForm() {
     }
 
     return (
-        <div className='w-full mx-auto bg-gray-300'>
-            <form onSubmit={handleSubmit(addTransection)} className='w-4/5 mx-auto'>
-                <div>
+        <div className='max-w-xs lg:max-w-[900px] mx-auto mt-[35px] py-8 rounded-lg bg-gray-300'>
+            <form onSubmit={handleSubmit(addTransection)} className='w-4/5 mx-auto lg:w-[90%]'>
+                <div className="lg:flex justify-between items-center">
                     <Input 
-                    type="text"
+                    type="date"
                     label="Date"
                     placeholder="Enter the date"
-                    className='my-2 px-2'
+                    className='my-2 px-2 mr-2'
                     {...register("date", {
-                        required: true
+                        required: true,
                     })}
                     />
                     <Input 
@@ -66,14 +82,10 @@ function TransectonForm() {
                         required: true
                     })}
                     />
-                    <Select
-                    options={["Cr", "Dr"]}
-                    className="block py-2 px-4 bg-green-400"
-                    {...register("status", {
-                        required: true
-                    })}
-                    />
-                    <Button type='submit' bgColor='bg-blue-500' className='w-full py-2 px-4 mt-2 rounded-md'>Add</Button>
+                    <div className='flex'>
+                    <Button type='submit' onClick={credit} bgColor='bg-green-500' className='w-full py-2 px-4 mt-2 mr-4 rounded-md'>Credit</Button>
+                    <Button type='submit' onClick={debit} bgColor='bg-red-500' className='w-full py-2 px-4 mt-2 rounded-md'>Debit</Button>
+                    </div>
                 </div>
             </form>
         </div>

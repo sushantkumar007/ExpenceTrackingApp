@@ -85,7 +85,9 @@ class DatabaseService {
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 [
-                    Query.equal("userId", [userId])
+                    Query.equal("userId", [userId]),
+                    Query.limit(100),
+                    Query.orderAsc("date")
                 ]
             )
         } catch (error) {

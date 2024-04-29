@@ -6,11 +6,14 @@ function Select({
 }, ref) {
     return (
         <select className={`${className}`} ref={ref}>
-        {options.map((option) => (
-            <option key={option} value={option}>
-                {option}
-            </option>
-        ))}
+        {options.map((option) => {
+            console.log(option)            
+            return (
+                <option key={option} value={option}>
+                    {option}
+                </option>
+            )
+        })}
     </select>
     )
 }
