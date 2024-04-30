@@ -32,7 +32,7 @@ class DatabaseService {
         }
     }
 
-    async updateTransection({transectionId, date, particular, amount, status, userId}) {
+    async updateTransection({transectionId, date, particular, amount, status}) {
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
@@ -43,7 +43,6 @@ class DatabaseService {
                     particular,
                     amount,
                     status,
-                    userId
                 }
             )
         } catch (error) {

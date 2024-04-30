@@ -8,7 +8,7 @@ function Statement() {
     const userData = useSelector((state) => state.auth.userData)
     const statement = useSelector((state) => state.statement.transections)
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         if (userData) {
             databaseService.getStatement(userData.$id)
@@ -22,13 +22,17 @@ function Statement() {
         } else {
             dispatch(removeStatement())
         }
-    }, [userData, statement])
+    }, [userData])
+
+    useEffect(() => {
+
+    }, [statement])
 
     
    return (
     statement.length > 0 ? (
         <div className='w-full mx-auto my-8'>
-            {statement.map((transection) => (
+            {statement?.map((transection) => (
                 <div key={transection.$id}>
                     <Transection {...transection} />
                 </div>
