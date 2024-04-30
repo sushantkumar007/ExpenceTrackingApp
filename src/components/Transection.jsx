@@ -23,7 +23,7 @@ function Transection({$id, date, particular, amount, status }) {
     useEffect(() => {
         const d = new Date(date)
         setDateString(`${d.getDate()}-${d.getMonth() + 1}-${d.getFullYear()}`)
-    }, [])
+    }, [date])
     
     const deleteTransection = (transectionId) => {
         databaseService.deleteTransection(transectionId).then((status) => {

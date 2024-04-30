@@ -23,11 +23,6 @@ function Statement() {
             dispatch(removeStatement())
         }
     }, [userData])
-
-    useEffect(() => {
-
-    }, [statement])
-
     
    return (
     statement.length > 0 ? (
