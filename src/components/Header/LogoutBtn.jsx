@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../../store/authSlice';
 import { useDispatch } from 'react-redux';
 
-function LogoutBtn() {
+function LogoutBtn({className}) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -18,8 +18,10 @@ function LogoutBtn() {
         })
     }
     return (
-        <button onClick={logoutHandle} className="mt-2 mx-4">
-            Logout
+        <button 
+            onClick={logoutHandle} 
+            className={`${className}`}>
+                Logout
         </button>
     )
 }

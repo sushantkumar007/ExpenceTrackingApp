@@ -8,13 +8,13 @@ function Home() {
     return (
     authStatus ? (
         <Container>
-            <div className="w-full ">
+            <div className="w-full min-h-screen">
                 <TransectionForm />
                 <Statement />
             </div>
         </Container>
     ) : (
-        <div className='w-full'>
+        <div className='w-full mt-48 min-h-screen'>
             <h1 className='text-center mt-4'>Login to see statement</h1>
         </div>
     )

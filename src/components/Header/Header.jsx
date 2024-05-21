@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import LogoutBtn from './LogoutBtn'
 
 function Header() {
     const authStatus = useSelector((state) => state.auth.status)
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false)
     const navItems = [
         // {
         //     name: "Home",
@@ -25,30 +26,53 @@ function Header() {
 
 
     return (
-        <div className='w-full bg-gray-400'>
-            <nav>
-                <ul className='list-none flex justify-end'>
-                    <li className='my-2 ml-4 mr-auto'>
-                        <Link to="/" >
-                            Home
-                        </Link>
+        <>
+            <nav className='w-full'>
+                <ul className='w-full h-14 flex justify-end items-center px-8 bg-gray-400'>
+                    <li className='mr-auto'>
+                        <Link to="/">Home</Link>
                     </li>
                     {navItems.map((item) => item.active ? (
-                        <li key={item.name} className='my-2 mx-4'>
+                        <li key={item.name} className='ml-12 hidden sm:block'>
                             <Link to={item.path}>{item.name}</Link>
                         </li>
-                    ) : null)}
+                    ) : null)}                    
                     {authStatus && (
-                        <li>
+                        <li className='hidden sm:block'>
                             <LogoutBtn />
                         </li>
                     )}
+                    <li 
+                    onClick={() => setIsSidebarOpen((prev) => !prev)}
+                    className='sm:hidden'
+                    >
+                        {isSidebarOpen ? (<svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>) : (
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+                        )}
+                    </li>
                 </ul>
-                {/* <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36" viewBox="0 0 24 24">
-<path d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z"></path>
-</svg> */}
+                <div className={`w-full ${isSidebarOpen ? "flex" : "hidden"} justify-end sm:hidden`}>
+                    <ul className='w-full max-w-sm flex flex-col items-center bg-gray-300'>
+                        {navItems.map((item) => item.active ? (
+                            <li
+                                key={item.name} 
+                                className='w-full h-12'>
+                                <Link 
+                                    to={item.path}
+                                    className='w-full h-full flex justify-center items-center bg-gray-300 hover:text-white hover:bg-gray-500'>
+                                        {item.name}
+                                </Link>
+                            </li>
+                        ) : null)}                    
+                        {authStatus && (
+                            <li className='w-full h-12'>
+                                <LogoutBtn className='w-full h-full flex justify-center items-center bg-gray-300 hover:text-white hover:bg-gray-500' />
+                            </li>
+                        )}
+                    </ul>
+                </div>
             </nav>
-        </div>
+        </>
     )
 }
 
